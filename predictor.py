@@ -92,7 +92,7 @@ if st.button("Predict"):
         shap.force_plot(1 -explainer.expected_value, shap_values_multi[:,:,0], pd.DataFrame([feature_values], columns=feature_names), matplotlib=True)
 
     plt.savefig("shap_force_plot.png", bbox_inches='tight', dpi=1200)
-    st.image("shap_force_plot.png", caption='SHAP Force Plot Explanation
+    st.image("shap_force_plot.png", caption='SHAP Force Plot Explanation)
 
     # LIME Explanation
     st.subheader("LIME Explanation")
