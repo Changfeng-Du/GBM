@@ -38,10 +38,10 @@ Hypertension = st.selectbox("Hypertension:", options=[1, 2], format_func=lambda 
 HHR = st.number_input("HHR:", min_value=0.23, max_value=1.67, value=0.49)
 
 # INDFMPIR: numerical input
-INDFMPIR = st.number_input("INDFMPIR:", min_value=0.0, max_value=5.0, value=1.2)
+INDFMPIR = st.number_input("PIR:", min_value=0.0, max_value=5.0, value=1.2)
 
 # BMXBMI: categorical selection
-BMXBMI = st.number_input("BMXBMI:", min_value=11.5, max_value=67.3, value=23.0)
+BMXBMI = st.number_input("BMI:", min_value=11.5, max_value=67.3, value=23.0)
 
 # LBXWBCSI: categorical selection
 LBXWBCSI = st.number_input("LBXWBCSI:", min_value=1.4, max_value=117.2, value=42.0)
