@@ -77,19 +77,22 @@ if st.button("Predict"):
 
     st.write(advice)
 
-    # SHAP Explanation
+     # SHAP Explanation
     st.subheader("SHAP Force Plot Explanation")
-    explainer_shap = shap.TreeExplainer(model)
-    shap_values = explainer_shap.shap_values(pd.DataFrame([feature_values], columns=feature_names))
+    explainer = shap.TreeExplainer(model)
+
+    shap_values_class1 =explainer.shap_values(pd.DataFrame([feature_values], columns=feature_names))
+    base_values = [1 - explainer.expected_value, explainer.expected_value]  # [类别0, 类别1]
+    shap_values_multi = np.stack([-shap_values_class1, shap_values_class1], axis=-1)  # 形状: (n_samples, n_features, 2)
     
-    # Display the SHAP force plot for the predicted class
+    # Display the SHAP force plot for the predicted clas
     if predicted_class == 1:
-        shap.force_plot(explainer_shap.expected_value, shap_values[:,:,1], pd.DataFrame([feature_values], columns=feature_names), matplotlib=True)
+        shap.force_plot(explainer.expected_value, shap_values_multi[:,:,1], pd.DataFrame([feature_values], columns=feature_names), matplotlib=True)
     else:
-        shap.force_plot(1 -explainer_shap.expected_value, shap_values[:,:,0], pd.DataFrame([feature_values], columns=feature_names), matplotlib=True)
+        shap.force_plot(1 -explainer.expected_value, shap_values_multi[:,:,0], pd.DataFrame([feature_values], columns=feature_names), matplotlib=True)
 
     plt.savefig("shap_force_plot.png", bbox_inches='tight', dpi=1200)
-    st.image("shap_force_plot.png", caption='SHAP Force Plot Explanation')
+    st.image("shap_force_plot.png", caption='SHAP Force Plot Explanation
 
     # LIME Explanation
     st.subheader("LIME Explanation")
